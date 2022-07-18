@@ -35,7 +35,7 @@
             <muleVersion>4.4.0</muleVersion>
             <username>${username}</username>
             <password>${password}</password>
-            <applicationName>jenkin_with_cred</applicationName>
+            <applicationName>jenkinwithcred</applicationName>
              <businessGroup>yash</businessGroup>
             <environment>Sandbox</environment>
             <workerType>MICRO</workerType>
