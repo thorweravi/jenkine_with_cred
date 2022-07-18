@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="70a235a6-9275-4283-a7e8-8c479bae6ab4" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="jenkine_with_credFlow" doc:id="5edae6c7-7c5b-42aa-aa04-fcbb0e05b47b" >
+		<http:listener doc:name="Listener" doc:id="137b3fb9-81e7-479c-94ad-ff66ae7b77a7" config-ref="HTTP_Listener_config" path="/jenkincred"/>
+		<logger level="INFO" doc:name="Logger" doc:id="399a81b5-1f0c-4a94-a563-5008e25d84df" message="done input"/>
+		<ee:transform doc:name="Transform Message" doc:id="580843b3-4e19-4af6-99b8-d8da720e2405" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"msg":"success"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="75055e1c-433f-40c9-9d84-d8a56ef9bf3a" message="done output"/>
+	</flow>
+</mule>
