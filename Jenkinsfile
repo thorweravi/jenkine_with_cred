@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Unit Test') { 
       steps {
-        bat 'mvn clean test'
+        sh 'mvn clean test'
       }
     }
     
@@ -12,7 +12,7 @@ pipeline {
         ANYPOINT_CREDENTIALS = credentials('anypoint.credentials')
       }
       steps {
-        bat 'mvn deploy -P cloudhub -Dusername=${ANYPOINT_CREDENTIALS_USR} -Dpassword=${ANYPOINT_CREDENTIALS_PSW}' 
+        sh 'mvn deploy -P cloudhub -Dusername=${ANYPOINT_CREDENTIALS_USR} -Dpassword=${ANYPOINT_CREDENTIALS_PSW}' 
       }
     }
   }
